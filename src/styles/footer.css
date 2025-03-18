@@ -1,0 +1,67 @@
+@media screen and (min-width: 768px) {
+  .footer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr auto auto;
+    grid-template-areas:
+      "logo producto"
+      "recursos empresa"
+      "line line"
+      "copy copy";
+    gap: 20px;
+  }
+
+  .logo {
+    grid-area: logo;
+  }
+
+  .producto {
+    grid-area: producto;
+  }
+
+  .recursos {
+    grid-area: recursos;
+  }
+
+  .empresa {
+    grid-area: empresa;
+  }
+
+  .line {
+    grid-area: line;
+  }
+
+  .copy {
+    grid-area: copy;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas:
+      "logo producto recursos empresa"
+      "line line line line"
+      "copy copy copy copy";
+    column-gap: 20px;
+  }
+  .logo {
+    grid-area: logo;
+  }
+  .producto {
+    grid-area: producto;
+  }
+  .recursos {
+    grid-area: recursos;
+  }
+  .empresa {
+    grid-area: empresa;
+  }
+  .line {
+    grid-area: line;
+  }
+  .copy {
+    grid-area: copy;
+  }
+}

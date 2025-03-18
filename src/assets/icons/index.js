@@ -1,0 +1,9 @@
+export { default as TabIcon } from "./TabIcon";
+export { default as ListIcon } from "./ListIcon";
+export { default as TeamIcon } from "./TeamIcon";
+export { default as ScheduleIcon } from "./ScheduleIcon";
+export { default as CheckIcon } from "./CheckIcon";
+export { default as GithubIcon } from "./GithubIcon";
+export { default as CodeIcon } from "./CodeIcon";
+export { default as MenuClosedIcon } from "./MenuClosedIcon";
+export { default as MenuOpenIcon } from "./MenuOpenIcon";

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+body {
+  font-family: "Raleway Variable", sans-serif;
+}
+
+@theme {
+  --color-text-light: #141616;
+  --color-text-dark: #f1f9f9;
+  --color-text-opacity-light: rgba(20, 22, 22, 0.5);
+  --color-text-opacity-dark: rgba(241, 249, 249, 0.5);
+
+  --color-primary: #4884e4;
+  --color-secondary: #384155;
+  --color-dashboard: #484060;
+  --color-hover: #a43592;
+  --color-footer: #3e384a;
+  --color-accent: #4f3256;
+  --color-bgMain: #f1f9f9;
+}
