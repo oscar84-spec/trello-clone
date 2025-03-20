@@ -35,8 +35,12 @@ const Home = () => {
         </div>
         <Menu />
         <div className="hidden md:flex md:gap-3 md:items-center ">
-          <Button>Iniciar Sesión </Button>
-          <Button bgColor="bg-secondary">Registro</Button>
+          <Link to="/login">
+            <Button>Iniciar Sesión </Button>
+          </Link>
+          <Link to="/register">
+            <Button bgColor="bg-secondary">Registro</Button>
+          </Link>
         </div>
       </Header>
       <Sections
