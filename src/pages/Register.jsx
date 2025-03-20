@@ -1,8 +1,22 @@
 import { Header, Sections } from "../templates/index";
 import { Link } from "react-router-dom";
 import { LogoHeader, Navbar, Menu, Button } from "../Components";
+import { useForm } from "react-hook-form";
+import { validationForm } from "../Validations/validationForm";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm(validationForm);
+
+  const onSubmit = (data) => {
+    console.log("data", data);
+    reset();
+  };
   return (
     <main>
       <Header>
@@ -43,7 +57,10 @@ const Register = () => {
           <h3 className="text-2xl font-semibold text-text-light text-center">
             Registro
           </h3>
-          <form className="flex flex-col gap-4 rounded-md shadow-md p-4">
+          <form
+            className="flex flex-col gap-4 rounded-md shadow-md p-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <div className="md:w-1/2">
                 <label className="block text-sm font-medium text-gray-700 mb-1 ">
@@ -53,7 +70,13 @@ const Register = () => {
                   type="text"
                   className="w-full p-2 text-text-light border border-text-opacity-light rounded-md outline-none focus:border-2  focus:border-primary"
                   placeholder="Ingresa tu nombre"
+                  {...register("nombre", validationForm.nombre)}
                 />
+                {errors.nombre && (
+                  <span className="text-xs text-red-500">
+                    {errors.nombre.message}
+                  </span>
+                )}
               </div>
               <div className="md:w-1/2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -63,7 +86,13 @@ const Register = () => {
                   type="text"
                   className="w-full p-2 text-text-light border border-text-opacity-light rounded-md outline-none focus:border-2  focus:border-primary"
                   placeholder="Ingresa tu apellido"
+                  {...register("apellido", validationForm.apellido)}
                 />
+                {errors.apellido && (
+                  <span className="text-xs text-red-500">
+                    {errors.apellido.message}
+                  </span>
+                )}
               </div>
             </div>
             <div className="">
@@ -71,30 +100,57 @@ const Register = () => {
                 Correo Electrónico
               </label>
               <input
-                type="text"
+                type="email"
                 className="w-full p-2 text-text-light border border-text-opacity-light rounded-md outline-none focus:border-2  focus:border-primary"
                 placeholder="your@email.com"
+                {...register("email", validationForm.email)}
               />
+              {errors.email && (
+                <span className="text-xs text-red-500">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
             <div className="">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Contraseña
               </label>
               <input
-                type="text"
+                type="password"
                 className="w-full p-2 text-text-light border border-text-opacity-light rounded-md outline-none focus:border-2  focus:border-primary"
                 placeholder="••••••••"
+                {...register("contrasenia", validationForm.contrasenia)}
               />
+              {errors.contrasenia && (
+                <span className="text-xs text-red-500">
+                  {errors.contrasenia.message}
+                </span>
+              )}
             </div>
             <div className="">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Contraseña
+                Confirmar Contraseña
               </label>
               <input
-                type="text"
+                type="password"
                 className="w-full p-2 text-text-light border border-text-opacity-light rounded-md outline-none focus:border-2  focus:border-primary"
                 placeholder="••••••••"
+                {...register(
+                  "confirmarContrasenia",
+
+                  {
+                    ...validationForm.confirmarContrasenia,
+                    validate: (value) =>
+                      value === watch("contrasenia") ||
+                      "Las contraseñas no coinciden",
+                  }
+                )}
               />
+              {errors.confirmarContrasenia && (
+                <span className="text-xs text-red-500">
+                  {errors.confirmarContrasenia.message}
+                </span>
+              )}
             </div>
             <button className="w-full bg-primary hover:bg-primary text-white font-medium py-2.5 rounded-lg transition-colors">
               Registrarme

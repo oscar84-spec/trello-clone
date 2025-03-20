@@ -1,7 +1,21 @@
 import { Header, Sections } from "../templates";
 import { LogoHeader, Navbar, Menu, Button } from "../Components";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { validationForm } from "../Validations/validationForm";
+
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("data", data), reset();
+  };
+
   return (
     <main>
       <Header>
@@ -42,7 +56,10 @@ const Login = () => {
           <h3 className="text-2xl font-bold text-text-light text-center">
             Iniciar Sesión
           </h3>
-          <form className="flex flex-col gap-4 rounded-md shadow-md p-4">
+          <form
+            className="flex flex-col gap-4 rounded-md shadow-md p-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Correo Electronico
@@ -51,7 +68,13 @@ const Login = () => {
                 type="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-2 focus:ring-primary focus:border-primary outline-none transition-all"
                 placeholder="your@email.com"
+                {...register("email", validationForm.email)}
               />
+              {errors.email && (
+                <span className="text-red-500 text-sm">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
 
             <div>
@@ -62,7 +85,13 @@ const Login = () => {
                 type="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-2 focus:ring-primary focus:border-primary outline-none transition-all"
                 placeholder="••••••••"
+                {...register("contrasenia", validationForm.contrasenia)}
               />
+              {errors.contrasenia && (
+                <span className="text-red-500 text-sm">
+                  {errors.contrasenia.message}
+                </span>
+              )}
             </div>
 
             <div className="flex items-center justify-between">
