@@ -3,6 +3,8 @@ import { LogoHeader, Navbar, Menu, Button } from "../Components";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { validationForm } from "../Validations/validationForm";
+import { clientLogin } from "../services/api/clientService";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -12,8 +14,21 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("data", data), reset();
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await clientLogin(data);
+      if (res) {
+        alert("Bienvenido");
+        navigate("/dashboard");
+      } else {
+        alert("Correo o Contraseñas incorrectos");
+      }
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,7 +64,7 @@ const Login = () => {
         </div>
       </Header>
       <Sections
-        className="flex justify-center items-center"
+        clases="flex justify-center items-center"
         alto="h-[calc(100vh-48px)]"
       >
         <div className="w-full h-full flex flex-col gap-4 justify-center md:max-w-md">
@@ -110,7 +125,7 @@ const Login = () => {
               </a>
             </div>
 
-            <button className="w-full bg-primary  text-white font-medium py-2.5 rounded-lg transition-colors">
+            <button className="w-full bg-primary  text-white font-medium py-2.5 rounded-lg transition-colors cursor-pointer">
               Entrar
             </button>
 

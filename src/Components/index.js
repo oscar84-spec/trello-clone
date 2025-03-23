@@ -8,3 +8,5 @@ export { default as CardsFeatures } from "./CardsFeatures";
 export { default as Planes } from "./Planes";
 export { default as CardPlan } from "./CardPlan";
 export { default as Footer } from "./Footer";
+export { default as Success } from "./Success";
+export { default as RouteProtected } from "./RouteProtected";
