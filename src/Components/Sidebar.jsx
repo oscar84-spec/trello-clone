@@ -8,7 +8,7 @@ import {
 } from "../assets/icons/index";
 import { useState } from "react";
 
-const Sidebar = ({ estilo }) => {
+const Sidebar = ({ estilo, userTabs }) => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(!show);
@@ -46,10 +46,18 @@ const Sidebar = ({ estilo }) => {
           </h2>
         </div>
         {show && (
-          <div className={`flex flex-col gap-2 ml-7 overflow-y-auto `}>
-            <h2 className="w-full flex items-center text-text-dark h-10 rounded-md p-1 hover:cursor-pointer hover:bg-zinc-700">
-              nombre de tablero
-            </h2>
+          <div
+            className={`flex flex-col gap-2 ml-7 overflow-y-auto 
+              ${userTabs.length > 0 ? "h-max max-h-28" : "max-h-0"}`}
+          >
+            {userTabs.map((tab) => (
+              <h2
+                className="w-full flex items-center text-text-dark h-10 rounded-md p-1 hover:cursor-pointer hover:bg-zinc-700"
+                key={tab._id}
+              >
+                {tab.nombre}
+              </h2>
+            ))}
           </div>
         )}
 

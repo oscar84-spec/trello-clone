@@ -1,16 +1,18 @@
-import { HeaderDash, Sidebar } from "../Components/index";
+import { HeaderDash, Sidebar, Board } from "../Components/index";
 import "../styles/dashboard.css";
-import { getDataDashboard } from "../services/api/clientService";
+import { fetchDataUser, fetchUserTabs } from "../services/api/clientService";
 import { useState, useEffect } from "react";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userTabs, setUserTabs] = useState(null);
 
+  //Obtener datos del usuario
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const res = await getDataDashboard();
+        const res = await fetchDataUser();
         setUserData(res);
         setLoading(false);
       } catch (error) {
@@ -20,14 +22,40 @@ const Dashboard = () => {
     getUserData();
   }, []);
 
-  if (loading) return <p>Cargando...</p>;
+  //Obtener los tableros del usuario
+  useEffect(() => {
+    const getUserTabs = async () => {
+      if (!userData) return;
+      try {
+        const res = await fetchUserTabs(userData?._id);
+        setUserTabs(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserTabs();
+  }, [userData]);
+
+  if (loading)
+    return (
+      <div className="flex flex-col-reverse gap-3 items-center justify-center">
+        <div
+          style={{ borderTopColor: "transparent" }}
+          className="w-8 h-8  border-4 border-blue-200 rounded-full animate-spin"
+        ></div>
+        <p className="text-center text-md text-text-opacity-light">
+          Cargando...
+        </p>
+      </div>
+    );
 
   if (!userData) return <span>No tienes acceso, favor de iniciar sesión</span>;
   return (
     <main className="w-full h-screen main">
       <HeaderDash clase="header" userData={userData} />
       <section className="dashboard flex">
-        <Sidebar estilo="sidebar" />
+        <Sidebar estilo="sidebar" userTabs={userTabs} />
+        <Board />
       </section>
     </main>
   );

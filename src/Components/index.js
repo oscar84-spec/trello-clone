@@ -12,3 +12,4 @@ export { default as Success } from "./Success";
 export { default as RouteProtected } from "./RouteProtected";
 export { default as HeaderDash } from "./HeaderDash";
 export { default as Sidebar } from "./Sidebar";
+export { default as Board } from "./Board";

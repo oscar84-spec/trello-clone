@@ -10,6 +10,7 @@ const HeaderDash = ({ clase, userData }) => {
   const navigate = useNavigate();
 
   const handleOpen = () => setIsOpen(!isOpen);
+  const initialLetter = userData?.nombre.charAt(0).toUpperCase();
 
   const handleLogout = async () => {
     const res = await clientLogout();
@@ -57,7 +58,9 @@ const HeaderDash = ({ clase, userData }) => {
       </div>
       {isOpen && (
         <DropDown clase="items-center md:w-48 md:left-[75%] lg:left-[80%] xl:left-[85%]">
-          <span>O</span>
+          <span className="text-xl text-text-light font-bold">
+            {initialLetter}
+          </span>
           <div className="w-full flex flex-col gap-2">
             <span className="text-md text-text-opacity-light">
               {userData.nombre} {userData.apellido}

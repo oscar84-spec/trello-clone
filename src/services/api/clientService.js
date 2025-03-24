@@ -45,7 +45,7 @@ export const clientLogout = async () => {
   }
 };
 
-export const getDataDashboard = async () => {
+export const fetchDataUser = async () => {
   try {
     const res = await fetch(endPoint.dashboard, {
       credentials: "include",
@@ -54,5 +54,15 @@ export const getDataDashboard = async () => {
     return data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const fetchUserTabs = async (id) => {
+  try {
+    const res = await fetch(endPoint.tabsByUserId + id);
+    const tabsData = res.json();
+    return tabsData;
+  } catch (error) {
+    console.log("rrrr", error);
   }
 };

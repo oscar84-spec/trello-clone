@@ -13,3 +13,4 @@ export { default as UserIcon } from "./UserIcon";
 export { default as StarIcon } from "./StarIcon";
 export { default as ArrowDownIcon } from "./ArrowDownIcon";
 export { default as ArrowRight } from "./ArrowRight";
+export { default as OptionsIcon } from "./OptionsIcon";
