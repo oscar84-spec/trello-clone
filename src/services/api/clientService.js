@@ -32,3 +32,27 @@ export const clientLogin = async (data) => {
     console.log(error);
   }
 };
+
+export const clientLogout = async () => {
+  try {
+    const res = await fetch(endPoint.logout, {
+      method: "POST",
+      credentials: "include",
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDataDashboard = async () => {
+  try {
+    const res = await fetch(endPoint.dashboard, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

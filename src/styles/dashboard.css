@@ -1,0 +1,33 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header"
+    "dashboard";
+}
+.header {
+  grid-area: header;
+}
+.dashboard {
+  grid-area: dashboard;
+}
+@media screen and (min-width: 768px) {
+  .dashboard {
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "sidebar boards"
+      "sidebar boards";
+    height: calc(100vh - 48px);
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+  }
+
+  .boards {
+    grid-area: boards;
+  }
+}

@@ -1,0 +1,29 @@
+[33mcommit 07ec02645fa9bfbe65b272d5761718bf3c8cbf96[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31mtrello/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Oscar Hernández <ohdz202@gmail.com>
+Date:   Sun Mar 23 16:55:38 2025 -0600
+
+    Registro y autenticación de usuarios completado
+
+[33mcommit 1a1231d01d4156cdc66af8f7c6e2920f39fc26fc[m
+Author: Oscar Hernández <ohdz202@gmail.com>
+Date:   Thu Mar 20 12:36:27 2025 -0600
+
+    Validaciones completas con react-hook-form
+
+[33mcommit bc90378844b65c40f98ef856cacae362fe8bfc82[m
+Author: Oscar Hernández <ohdz202@gmail.com>
+Date:   Thu Mar 20 11:42:55 2025 -0600
+
+    Formularios de registro e inicio de sesión terminados
+
+[33mcommit 936ccb0c60c89869cd0308ee981451dd268fb0d8[m
+Author: Oscar Hernández <ohdz202@gmail.com>
+Date:   Tue Mar 18 17:06:40 2025 -0600
+
+    Landing page terminada
+
+[33mcommit 76b47e4cac384800372be0ebccaa777ef3fc2bf0[m
+Author: Oscar Hernández <ohdz202@gmail.com>
+Date:   Tue Mar 18 14:38:48 2025 -0600
+
+    Iniciando proyecto con Vite

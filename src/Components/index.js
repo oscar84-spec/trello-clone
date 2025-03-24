@@ -10,3 +10,5 @@ export { default as CardPlan } from "./CardPlan";
 export { default as Footer } from "./Footer";
 export { default as Success } from "./Success";
 export { default as RouteProtected } from "./RouteProtected";
+export { default as HeaderDash } from "./HeaderDash";
+export { default as Sidebar } from "./Sidebar";

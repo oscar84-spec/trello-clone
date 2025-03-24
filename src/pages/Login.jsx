@@ -20,7 +20,6 @@ const Login = () => {
     try {
       const res = await clientLogin(data);
       if (res) {
-        alert("Bienvenido");
         navigate("/dashboard");
       } else {
         alert("Correo o Contraseñas incorrectos");
