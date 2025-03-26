@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userTabs, setUserTabs] = useState(null);
+  const [selectedTab, setSelectedTab] = useState(null);
 
   //Obtener datos del usuario
   useEffect(() => {
@@ -50,12 +51,26 @@ const Dashboard = () => {
     );
 
   if (!userData) return <span>No tienes acceso, favor de iniciar sesión</span>;
+
+  const tabSelected = (id) => setSelectedTab(id);
   return (
     <main className="w-full h-screen main">
-      <HeaderDash clase="header" userData={userData} />
+      <HeaderDash
+        clase="header"
+        userData={userData}
+        userTabs={userTabs}
+        setUserTabs={setUserTabs}
+        tabSelected={tabSelected}
+      />
       <section className="dashboard flex">
-        <Sidebar estilo="sidebar" userTabs={userTabs} />
-        <Board />
+        <Sidebar
+          estilo="sidebar"
+          userTabs={userTabs}
+          setUserTabs={setUserTabs}
+          idUser={userData._id}
+          tabSelected={tabSelected}
+        />
+        <Board clase="boards" selectedTab={selectedTab} idUser={userData._id} />
       </section>
     </main>
   );

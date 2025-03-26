@@ -22,12 +22,13 @@ export const clientLogin = async (data) => {
     const res = await fetch(endPoint.login, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify(data),
       credentials: "include",
     });
-    if (res.ok) return res.json();
+    if (!res.ok) return;
+    return res.json();
   } catch (error) {
     console.log(error);
   }
@@ -63,6 +64,42 @@ export const fetchUserTabs = async (id) => {
     const tabsData = res.json();
     return tabsData;
   } catch (error) {
-    console.log("rrrr", error);
+    console.log(error);
+  }
+};
+
+export const addTab = async (data, idUsuario) => {
+  try {
+    const res = await fetch(endPoint.addTab, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, idUsuario }),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchTabById = async (id) => {
+  try {
+    const res = await fetch(endPoint.getTabById + id);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteTab = async (id) => {
+  try {
+    const res = await fetch(endPoint.deleteTabById + id, {
+      method: "DELETE",
+    });
+    if (!res.ok) return console.log("No se pudo eliminar el tablero");
+    return res.json();
+  } catch (error) {
+    console.log(error);
   }
 };

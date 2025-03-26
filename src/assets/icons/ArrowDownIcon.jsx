@@ -1,7 +1,7 @@
 import { IoIosArrowDown } from "react-icons/io";
 
-const ArrowDownIcon = () => {
-  return <IoIosArrowDown className="size-6 text-text-dark" />;
+const ArrowDownIcon = ({ clase }) => {
+  return <IoIosArrowDown className={`size-6 ${clase}`} />;
 };
 
 export default ArrowDownIcon;

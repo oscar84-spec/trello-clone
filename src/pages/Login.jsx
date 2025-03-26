@@ -19,9 +19,8 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const res = await clientLogin(data);
-      if (res) {
-        navigate("/dashboard");
-      } else {
+      navigate("/dashboard");
+      if (!res) {
         alert("Correo o Contraseñas incorrectos");
       }
       reset();
