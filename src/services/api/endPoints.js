@@ -12,5 +12,6 @@ const endPoints = {
   deleteList: "http://localhost:3000/lista/",
   addTarjeta: "http://localhost:3000/tarjeta/",
   getTarjeta: "http://localhost:3000/tarjeta/",
+  deleteTarjeta: "http://localhost:3000/tarjeta/",
 };
 export default endPoints;

@@ -160,3 +160,15 @@ export const getTarjeta = async (id) => {
     console.log(error);
   }
 };
+
+export const deleteTarjeta = async (id) => {
+  try {
+    const res = await fetch(endPoint.deleteTarjeta + id, {
+      method: "DELETE",
+    });
+    if (!res.ok) return console.log("No se pudo eliminar la tarjeta");
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};

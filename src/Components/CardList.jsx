@@ -31,7 +31,7 @@ const CardList = ({ lista, setListas }) => {
       }
     };
     fetchTarjetas(lista._id);
-  });
+  }, [lista]);
 
   return (
     <div className="w-full bg-zinc-300 rounded-md flex-shrink-0 p-2 flex flex-col gap-2 md:max-w-64">
@@ -44,7 +44,11 @@ const CardList = ({ lista, setListas }) => {
       <div className="flex flex-col gap-3 border-3 border-sky-600 h-max max-h-[calc(100%-28px)] overflow-x-auto">
         {/* Aquí van las tarjetas */}
         {tarjetas.map((tarjeta) => (
-          <Tarjetas tarjeta={tarjeta} key={tarjeta._id} />
+          <Tarjetas
+            tarjeta={tarjeta}
+            key={tarjeta._id}
+            setTarjetas={setTarjetas}
+          />
         ))}
       </div>
       <button
@@ -54,7 +58,11 @@ const CardList = ({ lista, setListas }) => {
         Agregar tarjeta
       </button>
       <Modal open={openModal} onClose={handleOpenModal}>
-        <FormAddTarjeta onClose={handleOpenModal} listaId={lista._id} />
+        <FormAddTarjeta
+          onClose={handleOpenModal}
+          listaId={lista._id}
+          setTarjetas={setTarjetas}
+        />
       </Modal>
     </div>
   );

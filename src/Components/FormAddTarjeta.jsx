@@ -2,7 +2,7 @@ import { validationForm } from "../Validations/validationForm";
 import { useForm } from "react-hook-form";
 import { addTarjeta } from "../services/api/clientService";
 
-const FormAddTarjeta = ({ onClose, listaId }) => {
+const FormAddTarjeta = ({ onClose, listaId, setTarjetas }) => {
   const {
     register,
     handleSubmit,
@@ -13,7 +13,7 @@ const FormAddTarjeta = ({ onClose, listaId }) => {
   const onSubmit = async (data) => {
     try {
       const res = await addTarjeta(data, listaId);
-      console.log(res);
+      setTarjetas((prev) => [...prev, res]);
       onClose();
       reset();
     } catch (err) {
@@ -62,7 +62,7 @@ const FormAddTarjeta = ({ onClose, listaId }) => {
           type="radio"
           name="prioridad"
           id=""
-          value="alto"
+          value="Alto"
           {...register("prioridad")}
         />
         <label className="text-md text-text-light">Medio</label>
@@ -70,7 +70,7 @@ const FormAddTarjeta = ({ onClose, listaId }) => {
           type="radio"
           name="prioridad"
           id=""
-          value="medio"
+          value="Medio"
           {...register("prioridad")}
         />
         <label className="text-md text-text-light">Bajo</label>
@@ -78,7 +78,7 @@ const FormAddTarjeta = ({ onClose, listaId }) => {
           type="radio"
           name="prioridad"
           id=""
-          value="bajo"
+          value="Bajo"
           {...register("prioridad")}
         />
       </div>

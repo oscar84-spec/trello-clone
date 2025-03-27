@@ -19,3 +19,4 @@ export { default as AddList } from "./AddList";
 export { default as CardList } from "./CardList";
 export { default as Tarjetas } from "./Tarjetas";
 export { default as FormAddTarjeta } from "./FormAddTarjeta";
+export { default as Badge } from "./Badge";
