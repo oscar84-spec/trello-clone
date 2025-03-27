@@ -7,5 +7,8 @@ const endPoints = {
   addTab: "http://localhost:3000/tablero",
   getTabById: "http://localhost:3000/tablero/",
   deleteTabById: "http://localhost:3000/tablero/",
+  addList: "http://localhost:3000/lista/",
+  getList: "http://localhost:3000/lista/",
+  deleteList: "http://localhost:3000/lista/",
 };
 export default endPoints;

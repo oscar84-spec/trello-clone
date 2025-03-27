@@ -22,7 +22,7 @@ export const clientLogin = async (data) => {
     const res = await fetch(endPoint.login, {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
       credentials: "include",
@@ -98,6 +98,40 @@ export const deleteTab = async (id) => {
       method: "DELETE",
     });
     if (!res.ok) return console.log("No se pudo eliminar el tablero");
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addList = async (list, tableroId) => {
+  try {
+    const res = await fetch(endPoint.addList + tableroId, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(list),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchList = async (id) => {
+  try {
+    const res = await fetch(endPoint.getList + id);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteList = async (id) => {
+  try {
+    const res = await fetch(endPoint.deleteList + id, {
+      method: "DELETE",
+    });
+    if (!res.ok) return console.log("No se pudo eliminar la lista");
     return res.json();
   } catch (error) {
     console.log(error);

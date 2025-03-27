@@ -1,6 +1,10 @@
 import { OptionsIcon, MenuOpenIcon } from "../assets/icons/index";
-import { fetchTabById, fetchUserTabs } from "../services/api/clientService";
-import { DeleteTab } from "./index";
+import {
+  fetchTabById,
+  fetchUserTabs,
+  fetchList,
+} from "../services/api/clientService";
+import { DeleteTab, AddList, CardList } from "./index";
 import { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
 
@@ -9,8 +13,11 @@ const Board = ({ clase, selectedTab, idUser }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [openListModal, setOpenListModal] = useState(false);
+  const [listas, setListas] = useState([]);
 
   const handleOpenModal = () => setOpenModal(!openModal);
+  const handleOpenListModal = () => setOpenListModal(!openListModal);
 
   //Mostrar un solo tablero
   useEffect(() => {
@@ -42,6 +49,19 @@ const Board = ({ clase, selectedTab, idUser }) => {
     loadingFirstTab();
   }, [selectedTab, idUser]);
 
+  //Obtener todas las listas
+  useEffect(() => {
+    const getList = async (id) => {
+      try {
+        if (!id) return;
+        const res = await fetchList(id);
+        setListas(res);
+      } catch (error) {
+        console.error("Error al cargar listas:", error);
+      }
+    };
+    getList(tabData?._id);
+  }, [tabData?._id]);
   if (loading) {
     return (
       <div
@@ -88,18 +108,24 @@ const Board = ({ clase, selectedTab, idUser }) => {
           </button>
         </div>
       </div>
-      <div className="w-full max-w-screen h-[calc(100%-64px)] border-3 border-orange-400 flex gap-5 overflow-x-auto">
-        <div className="w-full bg-zinc-300 rounded-md flex-shrink-0 p-2 flex flex-col gap-2 md:max-w-64">
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-medium text-text-light">
-              Nombre de la lista
-            </h3>
-            <MenuOpenIcon />
-          </div>
-          <div className="border-3 border-sky-600 h-[calc(100%-28px)] overflow-x-auto">
-            <div className="bg-zinc-600 p-2 rounded-md flex-shrink-0 "></div>
-          </div>
-        </div>
+      <div className="w-full max-w-screen h-[calc(100%-64px)] border-3 border-orange-400 flex gap-3 overflow-x-auto">
+        {listas.map((lista) => (
+          <CardList lista={lista} setListas={setListas} key={lista._id} />
+        ))}
+        <button
+          type="button"
+          className="w-full md:max-w-64 h-max px-2 py-1 rounded-md bg-primary text-text-dark hover:cursor-pointer flex-shrink-0"
+          onClick={handleOpenListModal}
+        >
+          Agregar Lista
+        </button>
+        <Modal open={openListModal} onClose={handleOpenListModal}>
+          <AddList
+            tableroId={tabData._id}
+            onClose={handleOpenListModal}
+            setListas={setListas}
+          />
+        </Modal>
       </div>
     </section>
   );

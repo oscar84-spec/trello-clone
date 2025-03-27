@@ -15,3 +15,5 @@ export { default as Sidebar } from "./Sidebar";
 export { default as Board } from "./Board";
 export { default as FormAddTab } from "./FormAddTab";
 export { default as DeleteTab } from "./DeleteTab";
+export { default as AddList } from "./AddList";
+export { default as CardList } from "./CardList";
