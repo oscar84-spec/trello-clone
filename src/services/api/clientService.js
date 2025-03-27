@@ -137,3 +137,26 @@ export const deleteList = async (id) => {
     console.log(error);
   }
 };
+
+export const addTarjeta = async (data, id) => {
+  try {
+    const res = await fetch(endPoint.addTarjeta + id, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTarjeta = async (id) => {
+  try {
+    const res = await fetch(endPoint.getTarjeta + id);
+    if (!res.ok) return console.log("No se pudo obtener la tarjeta");
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};

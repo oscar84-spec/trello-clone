@@ -17,3 +17,5 @@ export { default as FormAddTab } from "./FormAddTab";
 export { default as DeleteTab } from "./DeleteTab";
 export { default as AddList } from "./AddList";
 export { default as CardList } from "./CardList";
+export { default as Tarjetas } from "./Tarjetas";
+export { default as FormAddTarjeta } from "./FormAddTarjeta";
