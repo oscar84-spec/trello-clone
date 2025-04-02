@@ -27,7 +27,7 @@ export const clientLogin = async (data) => {
       body: JSON.stringify(data),
       credentials: "include",
     });
-    if (!res.ok) return;
+    if (!res) return;
     return res.json();
   } catch (error) {
     console.log(error);
